@@ -15,8 +15,9 @@ const userSchema = new Schema(
       unique: true,
       validate: {
         validator: function(v) {
-          // return (look into Mongoose's matching validation);
-        }
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+        },
+        message: props => `${props.value} is not a valid email address!`
     }
   },
     thoughts: [
@@ -44,6 +45,6 @@ userSchema.virtual('friendCount').get(function() {
   return this.friends.length
 });
 
-const User = model('user', userSchema);
+const User = mongoose.model('user', userSchema);
 
 module.exports = User;
