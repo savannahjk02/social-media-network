@@ -1,5 +1,4 @@
 const { User, Thought } = require('../models');
-const { validationResult } = require('express-validator');
 
 module.exports = {
   // get all users
